@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       paths(),
-      visualizer({ open: false, filename: 'build.html' })
+      visualizer({ open: false, filename: 'build.html' }),
     ],
     server: {
       open: true,
@@ -24,15 +24,16 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           advancedChunks: {
-            groups: [{ name: 'vendor', test: /\bnode_modules\b/ }]
+            groups: [{ name: 'vendor', test: /\bnode_modules\b/ }],
           },
-        }
+        },
       },
     },
     test: {
       environment: 'jsdom',
       globals: true,
-      include: ['test/**/*.{ts,tsx}'],
+      setupFiles: 'test/setupTest.ts',
+      include: ['test/**/*.test.{ts,tsx}'],
       reporters: ['default', 'html'],
       coverage: {
         reporter: ['lcov', 'text'],
@@ -43,9 +44,9 @@ export default defineConfig(({ mode }) => {
           'src/App.tsx',
           'html/**',
           'coverage/**',
-          'dist/**'
-        ]
-      }
-    }
+          'dist/**',
+        ],
+      },
+    },
   }
 })
