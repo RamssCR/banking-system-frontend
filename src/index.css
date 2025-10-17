@@ -1,1 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "tailwindcss";
+
+:root {
+  /* Neutrals */
+  --color-bg: oklch(95.43% 0.01016 238.848);
+  --color-bg-contrast: oklch(0.95 0.01 240);
+  --color-contrast: oklch(0.15 0.02 240);
+  --color-accent: oklch(87.345% 0.06475 239.478);
+  --color-fg: oklch(0.35 0.03 240);
+  --color-muted: oklch(0.55 0.02 240);
+  --color-muted-fg: oklch(0.65 0.015 240);
+
+  /* Primary - Neon Blue */
+  --color-primary-bg: oklch(0.65 0.25 240);
+  --color-primary-bg-contrast: oklch(0.55 0.28 240);
+  --color-primary-contrast: oklch(0.98 0.005 240);
+  --color-primary-fg: oklch(0.88 0.12 240);
+  --color-primary-muted: oklch(0.75 0.18 240);
+  --color-primary-muted-fg: oklch(0.82 0.15 240);
+
+  /* Immutable (Commons) */
+  --color-light: oklch(0.96 0.01 240);
+  --color-dark: oklch(0.12 0.02 240);
+  --color-success: oklch(0.65 0.15 145);
+  --color-warning: oklch(0.75 0.15 65);
+  --color-error: oklch(0.62 0.25 25);
+  --color-info: oklch(0.68 0.22 240);
+
+  /* Dark Colors */
+  --color-bg-dark: oklch(15.59% 0.03602 250.387);
+  --color-bg-contrast-dark: oklch(0.18 0.03 240);
+  --color-contrast-dark: oklch(0.95 0.01 240);
+  --color-accent-dark: oklch(0.25 0.08 240);
+  --color-fg-dark: oklch(0.82 0.02 240);
+  --color-muted-dark: oklch(0.65 0.02 240);
+  --color-muted-fg-dark: oklch(0.45 0.02 240);
+
+  /* Primary Dark - Enhanced Neon Blue */
+  --color-primary-bg-dark: oklch(0.7 0.3 240);
+  --color-primary-bg-contrast-dark: oklch(0.6 0.32 240);
+  --color-primary-contrast-dark: oklch(0.05 0.02 240);
+  --color-primary-fg-dark: oklch(0.85 0.15 240);
+  --color-primary-muted-dark: oklch(0.78 0.22 240);
+  --color-primary-muted-fg-dark: oklch(0.82 0.18 240);
+
+  /* Typography */
+  --font-body: "Nunito", sans-serif;
+}
+
+@theme {
+  --color-bg: var(--color-bg);
+  --color-bg-contrast: var(--color-bg-contrast);
+  --color-contrast: var(--color-contrast);
+  --color-accent: var(--color-accent);
+  --color-fg: var(--color-fg);
+  --color-muted: var(--color-muted);
+  --color-muted-fg: var(--color-muted-fg);
+
+  --color-primary-bg: var(--color-primary-bg);
+  --color-primary-bg-contrast: var(--color-primary-bg-contrast);
+  --color-primary-contrast: var(--color-primary-contrast);
+  --color-primary-fg: var(--color-primary-fg);
+  --color-primary-muted: var(--color-primary-muted);
+  --color-primary-muted-fg: var(--color-primary-muted-fg);
+
+  --color-light: var(--color-light);
+  --color-dark: var(--color-dark);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+
+  --font-body: var(--font-body);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+.dark {
+  --color-bg: var(--color-bg-dark);
+  --color-bg-contrast: var(--color-bg-contrast-dark);
+  --color-contrast: var(--color-contrast-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-fg: var(--color-fg-dark);
+  --color-muted: var(--color-muted-dark);
+  --color-muted-fg: var(--color-muted-fg-dark);
+
+  --color-primary-bg: var(--color-primary-bg-dark);
+  --color-primary-bg-contrast: var(--color-primary-bg-contrast-dark);
+  --color-primary-contrast: var(--color-primary-contrast-dark);
+  --color-primary-fg: var(--color-primary-fg-dark);
+  --color-primary-muted: var(--color-primary-muted-dark);
+  --color-primary-muted-fg: var(--color-primary-muted-fg-dark);
+}
