@@ -1,5 +1,9 @@
+import { Switch } from '@shared/ui/primitives/Switch'
+
 export const App = () => {
   return (
-    <div className="underline text-3xl font-bold">Hello, World!</div>
+    <div className="p-5">
+      <Switch />
+    </div>
   )
 }
