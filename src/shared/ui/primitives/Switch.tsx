@@ -17,7 +17,9 @@ export const Switch = ({
     <SwitchPrimitive.Root
       data-slot="switch"
       className={classMerger(
-        'peer data-[state=checked]:bg-primary-bg-contrast hover:cursor-pointer data-[state=unchecked]:bg-muted focus-visible:border-contrast focus-visible:ring-contrast/50 inline-flex h-[1.3rem] w-9 shrink-0 items-center rounded-full shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        'peer data-[state=checked]:bg-primary-bg-contrast hover:cursor-pointer data-[state=unchecked]:bg-muted-fg',
+        'focus-visible:border-muted focus-visible:ring-muted inline-flex h-[1.3rem] w-9 shrink-0 items-center rounded-full',
+        'shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}
       {...props}
@@ -25,7 +27,8 @@ export const Switch = ({
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={classMerger(
-          'bg-light pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%+1px)] data-[state=unchecked]:translate-x-0.75',
+          'bg-light pointer-events-none block size-4 rounded-full ring-0 transition-transform',
+          'data-[state=checked]:translate-x-[calc(100%+1px)] data-[state=unchecked]:translate-x-0.75',
         )}
       />
     </SwitchPrimitive.Root>
