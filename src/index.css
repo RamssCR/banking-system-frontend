@@ -6,15 +6,16 @@
   --color-bg: oklch(95.43% 0.01016 238.848);
   --color-bg-contrast: oklch(0.95 0.01 240);
   --color-contrast: oklch(0.15 0.02 240);
-  --color-accent: oklch(87.345% 0.06475 239.478);
+  --color-accent: oklch(87.406% 0.06404 240.074);
   --color-fg: oklch(0.35 0.03 240);
-  --color-muted: oklch(0.55 0.02 240);
-  --color-muted-fg: oklch(0.65 0.015 240);
+  --color-muted: oklch(78.743% 0.0055 248.269);
+  --color-muted-fg: oklch(55.651% 0.00679 240.187);
 
   /* Primary - Neon Blue */
   --color-primary-bg: oklch(0.65 0.25 240);
   --color-primary-bg-contrast: oklch(0.55 0.28 240);
   --color-primary-contrast: oklch(0.98 0.005 240);
+  --color-primary-accent: oklch(0.3 0.1 240);
   --color-primary-fg: oklch(0.88 0.12 240);
   --color-primary-muted: oklch(0.75 0.18 240);
   --color-primary-muted-fg: oklch(0.82 0.15 240);
@@ -40,6 +41,7 @@
   --color-primary-bg-dark: oklch(0.7 0.3 240);
   --color-primary-bg-contrast-dark: oklch(0.6 0.32 240);
   --color-primary-contrast-dark: oklch(0.05 0.02 240);
+  --color-primary-accent-dark: oklch(0.3 0.1 240);
   --color-primary-fg-dark: oklch(0.85 0.15 240);
   --color-primary-muted-dark: oklch(0.78 0.22 240);
   --color-primary-muted-fg-dark: oklch(0.82 0.18 240);
@@ -60,6 +62,7 @@
   --color-primary-bg: var(--color-primary-bg);
   --color-primary-bg-contrast: var(--color-primary-bg-contrast);
   --color-primary-contrast: var(--color-primary-contrast);
+  --color-primary-accent: var(--color-primary-accent);
   --color-primary-fg: var(--color-primary-fg);
   --color-primary-muted: var(--color-primary-muted);
   --color-primary-muted-fg: var(--color-primary-muted-fg);
@@ -88,6 +91,7 @@
   --color-primary-bg: var(--color-primary-bg-dark);
   --color-primary-bg-contrast: var(--color-primary-bg-contrast-dark);
   --color-primary-contrast: var(--color-primary-contrast-dark);
+  --color-primary-accent: var(--color-primary-accent-dark);
   --color-primary-fg: var(--color-primary-fg-dark);
   --color-primary-muted: var(--color-primary-muted-dark);
   --color-primary-muted-fg: var(--color-primary-muted-fg-dark);
