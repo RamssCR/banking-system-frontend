@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, coverageConfigDefaults } from 'vitest/config'
 import paths from 'vite-tsconfig-paths'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       open: true,
     },
     build: {
-      minify: !isProduction ? 'esbuild' : false,
+      minify: !isProduction ? 'oxc' : false,
       sourcemap: !isProduction,
       rollupOptions: {
         output: {
@@ -42,9 +42,12 @@ export default defineConfig(({ mode }) => {
           '**/*.config.*',
           'src/main.tsx',
           'src/App.tsx',
+          'src/shared/variants/**',
+          'src/shared/utils/constants.ts',
           'html/**',
           'coverage/**',
           'dist/**',
+          ...coverageConfigDefaults.exclude,
         ],
       },
     },
