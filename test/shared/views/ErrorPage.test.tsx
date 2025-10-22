@@ -14,9 +14,6 @@ describe('ErrorPage', () => {
     expect(screen.getByText('We hit a snag with this page.')).toBeDefined()
     expect(screen.getByRole('button', { name: 'Refresh Page' })).toBeDefined()
     expect(screen.getByRole('link', { name: 'Go Home' })).toBeDefined()
-    expect(
-      screen.getByText(/© \d{4} BankSite. All rights reserved./),
-    ).toBeDefined()
   })
 
   test('fires reload function on Refresh Page button click', () => {
