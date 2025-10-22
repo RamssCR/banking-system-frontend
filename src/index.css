@@ -3,8 +3,8 @@
 
 :root {
   /* Neutrals */
-  --color-bg: oklch(95.43% 0.01016 238.848);
-  --color-bg-contrast: oklch(0.95 0.01 240);
+  --color-bg: oklch(93.6% 0.01858 237.96);
+  --color-bg-contrast: oklch(96.198% 0.00597 240.372);
   --color-contrast: oklch(0.15 0.02 240);
   --color-accent: oklch(87.406% 0.06404 240.074);
   --color-fg: oklch(0.35 0.03 240);
