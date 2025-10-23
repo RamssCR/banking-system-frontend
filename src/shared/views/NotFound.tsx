@@ -17,14 +17,14 @@ export const NotFound = () => (
     actions={
       <>
         <Text className="text-primary-accent font-medium">
-          We appreciate your patience. Please check back later!
+          Let's get you back on track!
         </Text>
         <Link
           to="/"
           variant="outline"
           className="text-center py-1.5 text-sm md:text-base"
         >
-          Go Home (There is for sure a page to go back to)
+          Go Home (There's definitely a page to go back to)
         </Link>
       </>
     }
