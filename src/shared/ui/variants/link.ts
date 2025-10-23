@@ -8,7 +8,7 @@ export const variants = tv({
       primary:
         'text-light bg-primary border border-primary rounded-lg py-3 px-5',
       outline:
-        'text-primary border border-primary rounded-lg py-3 px-5 hover:bg-primary hover:text-light',
+        'text-primary-accent border border-primary-accent rounded-lg py-3 px-5 hover:bg-primary-accent hover:text-light',
     },
   },
   defaultVariants: {
