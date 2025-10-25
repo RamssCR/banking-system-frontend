@@ -1,4 +1,5 @@
 import { defineConfig, coverageConfigDefaults } from 'vitest/config'
+import { loadEnv } from 'vite'
 import paths from 'vite-tsconfig-paths'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
@@ -7,8 +8,13 @@ import { visualizer } from 'rollup-plugin-visualizer'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
+  const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    define: {
+      __APP_VERSION__: JSON.stringify(env.VITE_VERSION || 'development'),
+      __IS_STAGING__: JSON.stringify(mode === 'staging'),
+    },
     plugins: [
       react(),
       tailwindcss(),
