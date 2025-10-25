@@ -35,6 +35,16 @@ export const profile = async (): Promise<Response['user']> => {
 }
 
 /**
+ * Refreshes the authentication tokens of the currently authenticated user.
+ * The backend must set the new tokens in the cookies so user can be
+ * redirected without any additional handling on the frontend.
+ * @returns A promise that resolves when the tokens are refreshed.
+ */
+export const refresh = async (): Promise<void> => {
+  await api.post('/auth/refresh')
+}
+
+/**
  * Signs the user out of his account.
  * @returns A promise that resolves when the user is signed out.
  */
