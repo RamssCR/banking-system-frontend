@@ -1,6 +1,29 @@
 import { MODE, VITE_BACKEND_URL } from '@shared/config/env.config'
 import { REQUEST_TIMEOUT_MS } from '@shared/utils/constants'
 import axios from 'axios'
+import { refresh } from '@features/auth/services/authorization'
+
+type Queue = {
+  resolve: (value?: unknown) => void
+  reject: (error: unknown) => void
+}
+
+let isRefreshing = false
+let failedQueue: Queue[] = []
+
+/**
+ * Processes the queue of failed requests.
+ * @param error - The error that occurred during the request.
+ * @param token - The new token to be used for the requests.
+ * @returns void
+ */
+export const processQueue = (error: unknown, token: unknown = null) => {
+  failedQueue.forEach((promise) => {
+    if (error) promise.reject(error)
+    else promise.resolve(token)
+  })
+  failedQueue = []
+}
 
 export const axiosInstance = axios.create({
   baseURL: VITE_BACKEND_URL,
@@ -29,14 +52,47 @@ if (MODE === 'development') {
     )
     return response
   })
-  axiosInstance.interceptors.response.use(undefined, (error) => {
-    console.error(
-      '%c[Axios Error]',
-      'color: #F44336; font-weight: bold;',
-      error,
-    )
-    return Promise.reject(error)
-  })
-  // 1st TODO: Attach a logger service to log errors in production (Sentry)
-  // 2nd TODO: Attach a `refresh` request to refresh tokens on 401 responses
+  axiosInstance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      console.error(
+        '%c[Axios Error]',
+        'color: #F44336; font-weight: bold;',
+        error,
+      )
+      return Promise.reject(error)
+    },
+  )
+  axiosInstance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config
+      if (error.response?.status === 401 && !originalRequest._retry) {
+        if (isRefreshing) {
+          return new Promise((resolve, reject) => {
+            failedQueue.push({ resolve, reject })
+          })
+            .then(() => axiosInstance(originalRequest))
+            .catch(Promise.reject)
+        }
+
+        originalRequest._retry = true
+        isRefreshing = true
+
+        try {
+          await refresh()
+          processQueue(null)
+          return axiosInstance(originalRequest)
+        } catch (error) {
+          processQueue(error)
+          throw error
+        } finally {
+          isRefreshing = false
+        }
+      }
+
+      return Promise.reject(error)
+    },
+  )
+  // TODO: Attach a logger service to log errors in production (Sentry)
 }
