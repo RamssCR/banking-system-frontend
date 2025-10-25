@@ -14,6 +14,6 @@ export const Loading = () => (
         Loading...
       </Text>
     </section>
-    <Tips className="fixed bottom-4 left-1/2 transform -translate-x-1/2" />
+    <Tips className="w-[90%] md:w-full fixed bottom-4 left-1/2 transform -translate-x-1/2" />
   </main>
 )
