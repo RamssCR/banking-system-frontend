@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
           'src/App.tsx',
           'src/shared/variants/**',
           'src/shared/utils/constants.ts',
+          'src/shared/plugins/axios.ts',
           'html/**',
           'coverage/**',
           'dist/**',

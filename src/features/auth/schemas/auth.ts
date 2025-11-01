@@ -5,12 +5,15 @@ export const baseAuth = z.object({
   password: z.string({ error: 'Password is required' }).min(8).max(100),
 })
 
-export const signUpSchema = baseAuth.extend({
-  username: z.string({ error: 'Username is required' }).min(4).max(30),
-  confirmPassword: z.refine((value) => value === baseAuth.shape.password, {
-    error: 'Passwords do not match',
-  }),
-})
+export const signUpSchema = baseAuth
+  .extend({
+    username: z.string({ error: 'Username is required' }).min(4).max(30),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  })
 
 export type SignIn = z.infer<typeof baseAuth>
 export type SignUp = z.infer<typeof signUpSchema>
