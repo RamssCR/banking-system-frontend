@@ -35,6 +35,38 @@ export const axiosInstance = axios.create({
   withCredentials: true,
 })
 
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject })
+        })
+          .then(() => axiosInstance(originalRequest))
+          .catch(Promise.reject)
+      }
+
+      originalRequest._retry = true
+      isRefreshing = true
+
+      try {
+        await refresh()
+        processQueue(null)
+        return axiosInstance(originalRequest)
+      } catch (error) {
+        processQueue(error)
+        throw error
+      } finally {
+        isRefreshing = false
+      }
+    }
+
+    return Promise.reject(error)
+  },
+)
+
 if (MODE === 'development') {
   axiosInstance.interceptors.request.use((config) => {
     console.log(
@@ -60,37 +92,6 @@ if (MODE === 'development') {
         'color: #F44336; font-weight: bold;',
         error,
       )
-      return Promise.reject(error)
-    },
-  )
-  axiosInstance.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-      const originalRequest = error.config
-      if (error.response?.status === 401 && !originalRequest._retry) {
-        if (isRefreshing) {
-          return new Promise((resolve, reject) => {
-            failedQueue.push({ resolve, reject })
-          })
-            .then(() => axiosInstance(originalRequest))
-            .catch(Promise.reject)
-        }
-
-        originalRequest._retry = true
-        isRefreshing = true
-
-        try {
-          await refresh()
-          processQueue(null)
-          return axiosInstance(originalRequest)
-        } catch (error) {
-          processQueue(error)
-          throw error
-        } finally {
-          isRefreshing = false
-        }
-      }
-
       return Promise.reject(error)
     },
   )
