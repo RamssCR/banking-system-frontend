@@ -7,6 +7,8 @@ beforeEach(() => {
 })
 
 vi.stubEnv('VITE_VERSION', 'test')
+vi.stubEnv('VITE_BACKEND_URL', 'https://mock.api.com')
+vi.stubEnv('MODE', 'test')
 
 afterEach(() => {
   cleanup()
@@ -17,7 +19,9 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-vi.stubGlobal('requestAnimationFrame', (cb: FrameRequestCallback) => setTimeout(cb, 0))
+vi.stubGlobal('requestAnimationFrame', (cb: FrameRequestCallback) =>
+  setTimeout(cb, 0),
+)
 
 window.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
