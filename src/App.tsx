@@ -1,10 +1,10 @@
-import { Loading } from '@shared/views/Loading'
+import { Register } from '@features/auth/views/Register'
 import { BrowserRouter } from 'react-router-dom'
 
 export const App = () => {
   return (
     <BrowserRouter>
-      <Loading />
+      <Register />
     </BrowserRouter>
   )
 }
