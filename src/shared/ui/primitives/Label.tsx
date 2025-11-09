@@ -13,7 +13,7 @@ export const Label = ({
 }: LabelHTMLAttributes<HTMLLabelElement>) => (
   <label
     htmlFor={htmlFor}
-    className={classMerger('font-medium', className)}
+    className={classMerger('font-medium block', className)}
     {...props}
   />
 )
